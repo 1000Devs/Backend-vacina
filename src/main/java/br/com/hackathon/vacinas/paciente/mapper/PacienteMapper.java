@@ -17,6 +17,7 @@ public final class PacienteMapper {
         paciente.setCpfPaciente(request.getCpfPaciente());
         paciente.setSexo(request.getSexo());
         paciente.setDataNascimento(request.getDataNascimento());
+        paciente.setIdFamilia(request.getIdFamilia());
         return paciente;
     }
 
@@ -25,6 +26,7 @@ public final class PacienteMapper {
         paciente.setCpfPaciente(request.getCpfPaciente());
         paciente.setSexo(request.getSexo());
         paciente.setDataNascimento(request.getDataNascimento());
+        paciente.setIdFamilia(request.getIdFamilia());
     }
 
     @NonNull
@@ -35,6 +37,7 @@ public final class PacienteMapper {
         response.setCpfPaciente(paciente.getCpfPaciente());
         response.setSexo(paciente.getSexo());
         response.setDataNascimento(paciente.getDataNascimento());
+        response.setIdFamilia(paciente.getIdFamilia());
         return response;
     }
 }

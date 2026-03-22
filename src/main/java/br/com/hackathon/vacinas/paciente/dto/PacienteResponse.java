@@ -11,6 +11,7 @@ public class PacienteResponse {
     private String cpfPaciente;
     private Sexo sexo;
     private LocalDate dataNascimento;
+    private Long idFamilia;
 
     public Long getId() {
         return id;
@@ -50,5 +51,12 @@ public class PacienteResponse {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Long getIdFamilia() {
+        return idFamilia;
+    }
+
+    public void setIdFamilia(Long idFamilia) {
     }
 }

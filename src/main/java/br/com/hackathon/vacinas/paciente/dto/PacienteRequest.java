@@ -29,6 +29,9 @@ public class PacienteRequest {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
 
+    @NotNull(message = "idFamilia obrigatório.")
+    private Long idFamilia;
+
     public String getNomePaciente() {
         return nomePaciente;
     }
@@ -59,5 +62,13 @@ public class PacienteRequest {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Long getIdFamilia() {
+        return idFamilia;
+    }
+
+    public void setIdFamilia(Long idFamilia) {
+        this.idFamilia = idFamilia;
     }
 }

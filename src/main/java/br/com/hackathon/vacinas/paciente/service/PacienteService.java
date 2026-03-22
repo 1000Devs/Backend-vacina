@@ -38,6 +38,11 @@ public class PacienteService {
         pacienteRepository.delete(paciente);
     }
 
+    public void deleteByIdFamilia(Long idFamilia) {
+        Paciente paciente = buscarEntidadePorId(idFamilia);
+        pacienteRepository.delete(paciente);
+    }
+
     public List<PacienteResponse> consultarTodos() {
         return pacienteRepository.findAll()
                 .stream()

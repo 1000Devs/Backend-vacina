@@ -44,7 +44,7 @@ public class PacienteController {
 
     @PutMapping("/alterar/{id}")
     public ResponseEntity<ApiResponseMessage> alterar(@NonNull @PathVariable Long id,
-                                                      @NonNull @Valid @RequestBody PacienteRequest request) {
+                                                     @NonNull @Valid @RequestBody PacienteRequest request) {
         pacienteService.alterar(id, request);
         return ResponseEntity.ok(new ApiResponseMessage("Paciente alterado com sucesso"));
     }

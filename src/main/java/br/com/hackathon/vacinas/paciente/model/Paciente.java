@@ -33,6 +33,9 @@ public class Paciente {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
+    @Column(name = "id_familia")
+    private Long IdFamilia;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +74,13 @@ public class Paciente {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Long getIdFamilia() {
+        return IdFamilia;
+    }
+
+    public void setIdFamilia(Long idFamilia) {
+        IdFamilia = idFamilia;
     }
 }
