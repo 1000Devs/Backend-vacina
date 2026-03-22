@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/vacinas")
+@CrossOrigin(origins = "*")
 public class VacinaController {
 
     private VacinaService vacinaService;
