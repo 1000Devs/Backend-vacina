@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface VacinaRepository extends JpaRepository<VacinaModel, Long> {
     List<VacinaModel> findByPublicoAlvo(PublicoAlvoEnum publicoAlvo);
 
-    List<VacinaModel> findByIdadeRecomendada(int idadeRecomendada);
+    List<VacinaModel> findByLimiteAplicacaoGreaterThan(int limiteAplicacao);
 }

@@ -13,7 +13,7 @@ public class VacinaDTO {
 
     private String descricaoVacina;
 
-    private int limiteAplicacao;
+    private Integer limiteAplicacao;
 
     public VacinaDTO(VacinaModel vacinaModel) {
         BeanUtils.copyProperties(vacinaModel, this);
@@ -38,7 +38,7 @@ public class VacinaDTO {
         this.descricaoVacina = descricaoVacina;
     }
 
-    public void setLimiteAplicacao(int limiteAplicacao) {
+    public void setLimiteAplicacao(Integer limiteAplicacao) {
         this.limiteAplicacao = limiteAplicacao;
     }
 
@@ -58,7 +58,7 @@ public class VacinaDTO {
         return descricaoVacina;
     }
 
-    public int getLimiteAplicacao() {
+    public Integer getLimiteAplicacao() {
         return limiteAplicacao;
     }
 

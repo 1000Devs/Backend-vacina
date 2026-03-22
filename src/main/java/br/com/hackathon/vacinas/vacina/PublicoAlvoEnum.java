@@ -2,7 +2,7 @@ package br.com.hackathon.vacinas.vacina;
 
 public enum PublicoAlvoEnum {
 
-    CRIANCA,
+    CRIANÇA,
     ADOLESCENTE,
     ADULTO,
     GESTANTE

@@ -35,8 +35,8 @@ public class VacinaService {
         return vacinas.stream().map(VacinaDTO::new).toList();
     }
 
-    public List<VacinaDTO> consultarVacinaPorIdadeRecomendada(int limiteAplicacao) {
-        List<VacinaModel> vacinas = vacinaRepository.findByIdadeRecomendada(limiteAplicacao);
+    public List<VacinaDTO> consultarVacinaAcimaLimite (int limiteAplicacao) {
+        List<VacinaModel> vacinas = vacinaRepository.findByLimiteAplicacaoGreaterThan(limiteAplicacao);
         return vacinas.stream().map(VacinaDTO::new).toList();
     }
 

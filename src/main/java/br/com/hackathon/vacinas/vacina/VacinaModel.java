@@ -25,8 +25,8 @@ public class VacinaModel {
     @Column(name = "descricao_vacina", length = 200, nullable = false)
     private String descricaoVacina;
 
-    @Column(name = "limite_aplicacao", nullable = false)
-    private int limiteAplicacao;
+    @Column(name = "limite_aplicacao", nullable = true)
+    private Integer limiteAplicacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "publico_alvo", nullable = false)
@@ -54,7 +54,7 @@ public class VacinaModel {
         this.descricaoVacina = descricaoVacina;
     }
 
-    public void setLimiteAplicacao(int limiteAplicacao) {
+    public void setLimiteAplicacao(Integer limiteAplicacao) {
         this.limiteAplicacao = limiteAplicacao;
     }
 
@@ -74,7 +74,7 @@ public class VacinaModel {
         return descricaoVacina;
     }
 
-    public int getLimiteAplicacao() {
+    public Integer getLimiteAplicacao() {
         return limiteAplicacao;
     }
 
@@ -89,7 +89,7 @@ public class VacinaModel {
         result = prime * result + ((idVacina == null) ? 0 : idVacina.hashCode());
         result = prime * result + ((nomeVacina == null) ? 0 : nomeVacina.hashCode());
         result = prime * result + ((descricaoVacina == null) ? 0 : descricaoVacina.hashCode());
-        result = prime * result + limiteAplicacao;
+        result = prime * result + ((limiteAplicacao == null) ? 0 : limiteAplicacao.hashCode());
         result = prime * result + ((publicoAlvo == null) ? 0 : publicoAlvo.hashCode());
         return result;
     }
@@ -118,7 +118,10 @@ public class VacinaModel {
                 return false;
         } else if (!descricaoVacina.equals(other.descricaoVacina))
             return false;
-        if (limiteAplicacao != other.limiteAplicacao)
+        if (limiteAplicacao == null) {
+            if (other.limiteAplicacao != null)
+                return false;
+        } else if (!limiteAplicacao.equals(other.limiteAplicacao))
             return false;
         if (publicoAlvo != other.publicoAlvo)
             return false;
@@ -126,5 +129,4 @@ public class VacinaModel {
     }
 
     
-
 }
