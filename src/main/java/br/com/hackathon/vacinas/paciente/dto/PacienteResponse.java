@@ -58,5 +58,6 @@ public class PacienteResponse {
     }
 
     public void setIdFamilia(Long idFamilia) {
+        this.idFamilia = idFamilia;
     }
 }
