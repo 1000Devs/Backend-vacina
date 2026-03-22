@@ -33,12 +33,22 @@ public class FamiliaController {
         }
     }
 
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Familia familia) {
+        try {
+            service.atualizar(id, familia);
+            return ResponseEntity.ok(Map.of("mensagem", "Familia atualizada"));
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("mensagem", e.getMessage()));
+        }
+    }
+
     @GetMapping("/consultar")
     public ResponseEntity<?> consultarTodos() {
         return ResponseEntity.ok(service.listarTodos());
     }
 
-    @PutMapping("/consultar/{id}")
+    @GetMapping("/consultar/{id}")
     public ResponseEntity<?> consultarPorId(@PathVariable Long id) {
         Optional<Familia> familia = service.buscarPorId(id);
         if (familia.isPresent()) {
@@ -47,7 +57,7 @@ public class FamiliaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("mensagem", "Familia não encontrada."));
     }
 
-    @GetMapping("/excluir/{id_familia}")
+    @DeleteMapping("/excluir/{id_familia}")
     public ResponseEntity<?> excluirPorId(@PathVariable Long id_familia) {
         try {
             service.deletar(id_familia);
