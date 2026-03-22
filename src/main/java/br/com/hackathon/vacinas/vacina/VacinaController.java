@@ -1,21 +1,14 @@
 package br.com.hackathon.vacinas.vacina;
 
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/vacinas")
+@RequestMapping("/vacinas")
 public class VacinaController {
 
     private VacinaService vacinaService;
@@ -25,24 +18,36 @@ public class VacinaController {
     }
 
     @GetMapping("/consultar")
-    public List<VacinaDTO> consultarVacinas () {
-        return vacinaService.consultarVacinas();
+    public ResponseEntity<?> consultarVacinas() {
+        List<VacinaDTO> vacinas = vacinaService.consultarVacinas();
+        return ResponseEntity.ok(vacinas);
     }
 
     @PostMapping
-    public void adicionarVacina (@RequestBody VacinaDTO vacina) {
+    public ResponseEntity<?> adicionarVacina(@RequestBody VacinaDTO vacina) {
         vacinaService.adicionar(vacina);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Map.of("mensagem", "Vacina cadastrada com sucesso."));
     }
 
     @PutMapping
-    public VacinaDTO alterarVacina (@RequestBody VacinaDTO vacina) {
-        return vacinaService.alterar(vacina);
+    public ResponseEntity<?> alterarVacina(@RequestBody VacinaDTO vacina) {
+        VacinaDTO vacinaAtualizada = vacinaService.alterar(vacina);
+        return ResponseEntity.ok(
+                Map.of(
+                        "mensagem", "Vacina atualizada com sucesso.",
+                        "vacina", vacinaAtualizada
+                )
+        );
     }
 
     @DeleteMapping("/excluir/{id}")
-    public ResponseEntity<Void> excluirVacina (@PathVariable Long id) {
+    public ResponseEntity<?> excluirVacina(@PathVariable Long id) {
         vacinaService.excluir(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(
+                Map.of("mensagem", "Vacina excluída com sucesso.")
+        );
     }
 
     @GetMapping("/consultar/faixa_etaria/{faixa}")
@@ -52,7 +57,22 @@ public class VacinaController {
     }
 
     @GetMapping("/consultar/idade_maior/{meses}")
-    public List<VacinaDTO> consultarVacinaAcimaLimite (@PathVariable int meses) {
-        return vacinaService.consultarVacinaAcimaLimite(meses);
+    public ResponseEntity<?> consultarVacinaAcimaLimite(@PathVariable int meses) {
+        List<VacinaDTO> vacinas = vacinaService.consultarVacinaAcimaLimite(meses);
+        return ResponseEntity.ok(vacinas);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntime(RuntimeException e) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("mensagem", e.getMessage()));
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleException(Exception e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("mensagem", "Erro na requisição: " + e.getMessage()));
     }
 }
