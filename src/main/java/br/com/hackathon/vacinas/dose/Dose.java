@@ -26,7 +26,7 @@ public class Dose {
     @Column(name = "descricao_dose", length = 50)
     private String descricaoDose;
     
-    @Column(name = "idade_recomenda_aplicacao")
+    @Column(name = "idade_recomendada_aplicacao")
     private Integer idadeRecomendaAplicacao;
     
 

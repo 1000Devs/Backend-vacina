@@ -27,7 +27,6 @@ public class Imunizacao {
     @Column(name = "data_aplicacao")
     private LocalDate dataAplicacao;
 
-    // Campos opcionais conforme a documentação
     @Column(name = "fabricante", length = 45)
     private String fabricante;
 
