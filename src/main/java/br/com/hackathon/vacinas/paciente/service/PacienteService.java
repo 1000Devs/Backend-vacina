@@ -6,6 +6,7 @@ import br.com.hackathon.vacinas.paciente.mapper.PacienteMapper;
 import br.com.hackathon.vacinas.paciente.model.Paciente;
 import br.com.hackathon.vacinas.paciente.repository.PacienteRepository;
 import br.com.hackathon.vacinas.paciente.shared.exception.RecursoNaoEncontradoException;
+import jakarta.transaction.Transactional;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +40,9 @@ public class PacienteService {
     }
 
     public void deleteByIdFamilia(Long idFamilia) {
-        Paciente paciente = buscarEntidadePorId(idFamilia);
-        pacienteRepository.delete(paciente);
+        pacienteRepository.findAll().stream()
+                .filter(paciente -> paciente.getIdFamilia().equals(idFamilia))
+                .forEach(paciente -> excluir(paciente.getId()));
     }
 
     public List<PacienteResponse> consultarTodos() {
