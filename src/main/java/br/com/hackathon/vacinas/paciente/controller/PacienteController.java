@@ -58,4 +58,11 @@ public class PacienteController {
     public ResponseEntity<PacienteResponse> consultarPorId(@NonNull @PathVariable Long id) {
         return ResponseEntity.ok(pacienteService.consultarPorId(id));
     }
+
+    @GetMapping("/consultar/familia/{idFamilia}")
+    public ResponseEntity<List<PacienteResponse>> consultarPorFamilia(@PathVariable Long idFamilia) {
+        List<PacienteResponse> pacientes = pacienteService.buscarPorFamilia(idFamilia);
+
+        return ResponseEntity.ok(pacientes);
+    }
 }

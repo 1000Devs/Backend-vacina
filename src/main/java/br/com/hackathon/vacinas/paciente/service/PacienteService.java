@@ -62,4 +62,11 @@ public class PacienteService {
         return pacienteRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Paciente nao encontrado para o id: " + id));
     }
+
+    public List<PacienteResponse> buscarPorFamilia(@NonNull Long idFamilia) {
+        return pacienteRepository.findAll().stream()
+                .filter(paciente -> idFamilia.equals(paciente.getIdFamilia())) // Ajuste o getter caso o seu seja diferente
+                .map(PacienteMapper::toResponse)
+                .toList();
+    }
 }
